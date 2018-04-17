@@ -59,9 +59,41 @@ candleChart(AAPL,TA = NULL, subset= '2017')
 candleChart(AAPL, TA=NULL, subset ='2017-05::2017-07')
 #------------------------------------------------------
 candleChart(AAPL,theme = 'white', subset = '2017-05::2017-07')
+#-----------------------------------------------------------------
 
-#adding another chart type (chart series)
-chartSeries(AAPL, type = c("candleChart"), TA= NULL, subset = '2017-03') 
+# we are going to add some indicotors to our charts : 
+#1-simple moving average SMA
+# 2-rate of change 
+# 3-CCI indictor 
+# 4- bollingerBands or bband
+# 5 - a cusotm indictor that ise fomred using the difference between two 
+# .. moving avarages e.g 200,50 
+
+install.packages('TTR')
+#adding another financial chart type ri enable us to add more features ,indocators  (chart series)
+library(TTR)
+chartSeries(AAPL, theme = 'white')
+?TTR
+chartSeries(AAPL,theme = 'white')
+#adding a moveing average indictor 
+addSMA(n=200) # 200 day sma 
+#adding ROC 
+addROC(n=100)
+#add CCI 
+chartSeries(GOOG,theme='white',TA= "addCCI();addSMA(n=200)")
+#add BBands
+chartSeries(GOOG,theme='white',TA="addBBands(n=50)",subset ='2014::2017')
+?addBBands
+
+
+
+
+
+
+
+
+
+
 
 
 
