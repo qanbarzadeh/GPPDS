@@ -4,11 +4,11 @@
 # project first we need to intall quantmode package. 
 getwd()
 #setwd("C:\Users\ali\OneDrive - 365.um.edu.my\WQD7001")
-
-setwd("F:/gitCodes/GPPDS")
+setwd("/Users/Ali/Documents/GitHub/GPPDS")
 
 
 install.packages('quantmod')
+install.packages('TTR')
 
 #loading quantmod library
 library(quantmod)
@@ -58,8 +58,10 @@ candleChart(AAPL,TA = NULL, subset= '2017')
 #or pcik a sepcific date , Kwang 
 candleChart(AAPL, TA=NULL, subset ='2017-05::2017-07')
 #------------------------------------------------------
-
 candleChart(AAPL,theme = 'white', subset = '2017-05::2017-07')
+
+#adding another chart type (chart series)
+chartSeries(AAPL, type = c("candleChart"), TA= NULL, subset = '2017-03') 
 
 
 
