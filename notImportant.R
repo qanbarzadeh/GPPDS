@@ -3,7 +3,11 @@
 # we are working with quantitiative financial data in this ..
 # project first we need to intall quantmode package. 
 getwd()
-setwd("C:\Users\ali\OneDrive - 365.um.edu.my\WQD7001")
+#setwd("C:\Users\ali\OneDrive - 365.um.edu.my\WQD7001")
+
+setwd("F:/gitCodes/GPPDS")
+
+
 install.packages('quantmod')
 
 #loading quantmod library
@@ -21,10 +25,10 @@ getSymbols('GOOG', src='yahoo')
 
 #inputing APPL to view() function u can see their respective dataset
 # head and tail 
-head(APPL)
+head(AAPL)
 tail(AAPL)
 #to see min , max , mean , median ...
-summury(WMT)
+summary(AAPL)
 
 # user may want to call several symbols at once..
 #we can impelement it in our UI(Shiny) eith this command
@@ -56,3 +60,6 @@ candleChart(AAPL, TA=NULL, subset ='2017-05::2017-07')
 #------------------------------------------------------
 
 candleChart(AAPL,theme = 'white', subset = '2017-05::2017-07')
+
+
+
