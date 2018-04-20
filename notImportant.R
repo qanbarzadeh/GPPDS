@@ -101,7 +101,7 @@ addTA(AAPL.EMA.50 - AAPL.EMA.200, col='green', type='h',legend="50-200 MA")
 
 
 
-
+getwd()
 
 
 
