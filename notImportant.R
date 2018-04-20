@@ -69,6 +69,8 @@ candleChart(AAPL,theme = 'white', subset = '2017-05::2017-07')
 # 5 - a cusotm indictor that ise fomred using the difference between two 
 # .. moving avarages e.g 200,50 
 
+#adding multiple moving averages to predict chart trend 
+
 install.packages('TTR')
 #adding another financial chart type ri enable us to add more features ,indocators  (chart series)
 library(TTR)
@@ -83,12 +85,19 @@ addROC(n=100)
 chartSeries(GOOG,theme='white',TA= "addCCI();addSMA(n=200)")
 #add BBands
 chartSeries(GOOG,theme='white',TA="addBBands(n=50)",subset ='2014::2017')
-?addBBands
 
+#-------------------------------------------------------------------
+library(quantmod)
+getSymbols(c('AAPL', 'GOOG'), src='yahoo')
+chartSeries(AAPL$AAPL.Close, theme="white", TA="addEMA(50, col='black');addEMA(200, col='blue')")
+#names(AAPL) to see Open close hogh and low ... of this stock 
+#same thing for GSPC 
+chartSeries(GSPC$GSPC.Close, theme="white", TA="addEMA(50, col='black'); addEMA(200, col='red')")
 
-
-
-
+#-> aadding difference of moving aeverage indicators to predcit price trend 
+AAPL.EMA.50 <-EMA(AAPL$AAPL.Close, n=50, ) 
+AAPL.EMA.200 <- EMA(AAPL$AAPL.Close, n=200, )  
+addTA(AAPL.EMA.50 - AAPL.EMA.200, col='green', type='h',legend="50-200 MA")
 
 
 
