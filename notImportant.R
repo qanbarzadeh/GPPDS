@@ -94,14 +94,13 @@ chartSeries(AAPL$AAPL.Close, theme="white", TA="addEMA(50, col='black');addEMA(2
 #same thing for GSPC 
 chartSeries(GSPC$GSPC.Close, theme="white", TA="addEMA(50, col='black'); addEMA(200, col='red')")
 
-#-> aadding difference of moving aeverage indicators to predcit price trend 
-AAPL.EMA.50 <-EMA(AAPL$AAPL.Close, n=50, ) 
-AAPL.EMA.200 <- EMA(AAPL$AAPL.Close, n=200, )  
-addTA(AAPL.EMA.50 - AAPL.EMA.200, col='green', type='h',legend="50-200 MA")
+#aadding difference of moving aeverage indicators to predcit price trend 
+library(TTR)
 
+AAPL.EMA.50<- EMA(AAPL$AAPL.Close, n=50, ) 
+AAPL.EMA.200<- EMA(AAPL$AAPL.Close, n=200, )  
+addTA(AAPL.EMA.50 - AAPL.EMA.200,col='blue', type='h',legend="Difference of MA's")
 
-
-getwd()
 
 
 
