@@ -88,7 +88,7 @@ chartSeries(GOOG,theme='white',TA="addBBands(n=50)",subset ='2014::2017')
 
 #-------------------------------------------------------------------
 library(quantmod)
-getSymbols(c('AAPL', 'GOOG'), src='yahoo')
+#getSymbols(c('AAPL', 'GOOG'), src='yahoo')
 chartSeries(AAPL$AAPL.Close, theme="white", TA="addEMA(50, col='black');addEMA(200, col='blue')")
 #names(AAPL) to see Open close hogh and low ... of this stock 
 #same thing for GSPC 
@@ -100,6 +100,40 @@ library(TTR)
 AAPL.EMA.50<- EMA(AAPL$AAPL.Close, n=50, ) 
 AAPL.EMA.200<- EMA(AAPL$AAPL.Close, n=200, )  
 addTA(AAPL.EMA.50 - AAPL.EMA.200,col='blue', type='h',legend="Difference of MA's")
+
+
+#----------------------------------#----------------------------------#----------------------------------
+#----------------------------------#----------------------------------#----------------------------------
+#----------------------------------#----------------------------------#----------------------------------
+#In this section we build the TradingSystem.@Kwangwei you use the code produced in this section as an alert; 
+#for portfolio  diversification purposes I work on dowJones (^DJI) and nasdq (^IXIC); 
+
+library(quantmod)
+getSymbols(c('^DJI','^IXIC'), src='yahoo')
+
+#adding a chartSerries fucntion for Dowjones 
+chartSeries(DJI$DJI.Close, theme="white", TA="addEMA(50, col='black'); addEMA(200,col='blue')")
+#chartseries for IXIC
+chartSeries(IXIC$IXIC.Close, theme="white", TA="addEMA(50, col='black'); addEMA(200,col='blue')")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
