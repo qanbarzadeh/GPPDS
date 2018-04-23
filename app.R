@@ -5,7 +5,8 @@ library(quantmod)
 stocks <- c('Apple' = 'AAPL', 'Google' = 'GOOG', 'Wallmart' = 'WMT','Amazon'='AMZN',
             'S&P 500' = '^GSPC','NASDAQ'='^IXIC')
 features <- c('Bollinger Bands'='addBBands()', 'Volume'='addVo()',
-             'Commodity Channel Index'='addCCI()')
+             'Commodity Channel Index'='addCCI()', 'Simple Moving Average'='addSMA()',
+             'Rate of Change' = 'addROC()')
 
 # The UI part
 ui <- fluidPage(
