@@ -27,10 +27,10 @@ sellSignal <- ifelse(
     fastDifference  < 0 &
     shift(v=as.numeric(fastDifference), places=1, dir="right") > 0, AAPL$AAPL.Close, NA)
 
-plot(AAPL$AAPL.Close,type='l',grid.col = 'white',grid2 = 'white')
+plot(AAPL$AAPL.Close,type='l',grid.col = 'white',grid2 = 'white',subset = '2017')
 grid
-points(buySignal, col='blue', cex=1.5, pch=18)
-points(sellSignal, col='red', cex=1.5, pch=18)
+points(buySignal, col='blue', cex=3, pch=18)
+points(sellSignal, col='red', cex=3, pch=18)
 #fixedsdfsdfasdf
 
 
