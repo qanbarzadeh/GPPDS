@@ -8,24 +8,24 @@ library(TTR)
 AAPL.EMA.10 <- EMA(AAPL$AAPL.Close, n=10, ) 
 AAPL.EMA.50 <- EMA(AAPL$AAPL.Close, n=50, ) 
 AAPL.EMA.200 <- EMA(AAPL$AAPL.Close, n=200, ) 
-Fast.Diff <- AAPL.EMA.10 - AAPL.EMA.50
-Slow.Diff <- AAPL.EMA.50 - AAPL.EMA.200
-addTA(Fast.Diff, col='blue', type='h',legend="Fast moving average")
-addTA(Slow.Diff, col='red', type='h',legend="Slow moving average")
+fastDifference <- AAPL.EMA.10 - AAPL.EMA.50
+SlowDifference <- AAPL.EMA.50 - AAPL.EMA.200
+addTA(fastDifference, col='blue', type='h',legend="Fast moving average")
+addTA(SlowDifference, col='red', type='h',legend="Slow moving average")
 
 
 library(binhf)
 
 Long_Trades <- ifelse(
-  Slow.Diff  > 0 &
-    Fast.Diff  > 0 &
-    shift(v=as.numeric(Fast.Diff), places=1, dir="right") < 0, AAPL$AAPL.Close, NA)
+  SlowDifference  > 0 &
+    fastDifference  > 0 &
+    shift(v=as.numeric(fastDifference), places=1, dir="right") < 0, AAPL$AAPL.Close, NA)
 
 # look for long exits (same thing but inverse signts)
 Short_Trades <- ifelse(
-  Slow.Diff  < 0 &
-    Fast.Diff  < 0 &
-    shift(v=as.numeric(Fast.Diff), places=1, dir="right") > 0, AAPL$AAPL.Close, NA)
+  SlowDifference  < 0 &
+    fastDifference  < 0 &
+    shift(v=as.numeric(fastDifference), places=1, dir="right") > 0, AAPL$AAPL.Close, NA)
 
 plot(AAPL$AAPL.Close,type='l',grid.col = 'white',grid2 = 'white')
 grid
