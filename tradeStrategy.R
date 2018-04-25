@@ -27,7 +27,7 @@ Short_Trades <- ifelse(
     Fast.Diff  < 0 &
     shift(v=as.numeric(Fast.Diff), places=1, dir="right") > 0, AAPL$AAPL.Close, NA)
 
-plot(AAPL$AAPL.Close,type='l')
+plot(AAPL$AAPL.Close,type='l',grid.col = 'white',grid2 = 'white')
 grid
 points(Long_Trades, col='blue', cex=1.5, pch=18)
 points(Short_Trades, col='red', cex=1.5, pch=18)
