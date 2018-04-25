@@ -114,44 +114,71 @@ library(quantmod)
 install.packages('TTR')
 library(TTR)
 getSymbols(c('^DJI'), src='yahoo')
+getSymbols(c('IBEX', 'SPY'), src='yahoo')
+
+chartSeries(IBEX$IBEX.Close, theme="white", TA="addEMA(50, col='black');addEMA(200, col='blue')",subset = '2017')
+chartSeries(SPY, theme="white", TA="addEMA(50, col='black');addEMA(200, col='blue')",subset = '2017')
+
+SPY.EMA.50<- EMA(SPY$SPY.Close, n=50, ) 
+SPY.EMA.200<- EMA(SPY$SPY.Close, n=200, )  
+addTA(SPY.EMA.50 - SPY.EMA.200,col='blue', type='h',legend="50-200 MA")
 
 
-#adding a chartSerries fucntion for Dowjones 
-chartSeries(DJI$DJI.Close, theme="white", TA="addEMA(50, col='black'); addEMA(200,col='blue')")
-#chartseries for DJI
-chartSeries(DJI$DJI.Close, theme="white", TA="addEMA(50, col='black'); addEMA(200,col='blue')")
+library(TTR)
+chartSeries(IBEX, theme="white", TA="addEMA(50, col='black');addEMA(200, col='blue')",subset = '2017')
+
+IBEX.EMA.50 <- EMA(IBEX$IBEX.Close, n=50, ) 
+IBEX.EMA.200 <- EMA(IBEX$IBEX.Close, n=200, ) 
+addTA(IBEX.EMA.50 - IBEX.EMA.200, col='blue', type='h',legend="50-200 MA")
+
+chartSeries(IBEX, theme="white", TA="addEMA(50, col='black');addEMA(200, col='blue')",subset = '2017')
 
 
-DowEMA10 <- EMA(DJI$DJI.Close, n=10)
-DowEMA50 <- EMA(DJI$DJI.Close, n=20)
-DowEMA200 <- EMA(DJI$DJI.Close, n=50)
+IBEX.EMA.10 <- EMA(IBEX$IBEX.Close, n=10, ) 
+IBEX.EMA.50 <- EMA(IBEX$IBEX.Close, n=50, ) 
+IBEX.EMA.200 <- EMA(IBEX$IBEX.Close, n=200, ) 
+Fast.Diff <- IBEX.EMA.10 - IBEX.EMA.50
+Slow.Diff <- IBEX.EMA.50 - IBEX.EMA.200
+addTA(Fast.Diff, col='blue', type='h',legend="10-50 MA")
+addTA(Slow.Diff, col='red', type='h',legend="50-200 MA")
 
-fastMA <- DowEMA50 - DowEMA10
-Fast.Diff <- DowEMA10 - DowEMA50
-Slow.Diff <- DowEMA50 - DowEMA200
-addTA(Fast.Diff, col='blue', type='h',legend="fast")
-addTA(Slow.Diff, col='red', type='h',legend="slow")
+chartSeries(SPY, theme="white", TA="addEMA(50, col='black');addEMA(200, col='blue')",subset = '2017')
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+SPY.EMA.10 <- EMA(SPY$SPY.Close, n=10, ) 
+SPY.EMA.50 <- EMA(SPY$SPY.Close, n=50, ) 
+SPY.EMA.200 <- EMA(SPY$SPY.Close, n=200, ) 
+Fast.Diff <- SPY.EMA.10 - SPY.EMA.50
+Slow.Diff <- SPY.EMA.50 - SPY.EMA.200
+addTA(Fast.Diff, col='blue', type='h',legend="10-50 MA")
 
 
 
 
 
+#----------------------------------#----------------------------------#----------------------------------
+#----------------------------------#----------------------------------#----------------------------------
+#coding for trading 
+EMA.Fast <- EMA(SPY$SPY.Close, n=10, ) 
+EMA.Medium <- EMA(SPY$SPY.Close, n=50, ) 
+EMA.Slow <- EMA(SPY$SPY.Close, n=200, ) 
+Fast.Diff <- EMA.Fast - EMA.Medium
+Slow.Diff <- EMA.Medium - EMA.Slow
 
-
+# trading strategy for buying
+Long_Trades <- ifelse(
+  Slow.Diff  > 0 &
+    Fast.Diff  > 0 &
+    shift(v=as.numeric(Fast.Diff), places=1, dir="right") < 0, SPY$SPY.Close, NA)
+    # bro kwangwei this is the notifiction signal 
+    print('buy')
+# trading strategy for selling 
+Short_Trades <- ifelse(
+  Slow.Diff  < 0 &
+    Fast.Diff  < 0 &
+  
+    shift(v=as.numeric(Fast.Diff), places=1, dir="right") > 0, SPY$SPY.Close, NA)
+# bro kwangwei this is the notifiction signal  for selling the stock 
+    print('sell')
 
 
 
