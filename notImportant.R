@@ -108,8 +108,13 @@ addTA(AAPL.EMA.50 - AAPL.EMA.200,col='blue', type='h',legend="Difference of MA's
 #In this section we build the TradingSystem.@Kwangwei you use the code produced in this section as an alert; 
 #for portfolio  diversification purposes I work on dowJones (^DJI) and nasdq (^DJI); 
 
+install.packages('binhf')
+library(binhf)
 library(quantmod)
+install.packages('TTR')
+library(TTR)
 getSymbols(c('^DJI'), src='yahoo')
+
 
 #adding a chartSerries fucntion for Dowjones 
 chartSeries(DJI$DJI.Close, theme="white", TA="addEMA(50, col='black'); addEMA(200,col='blue')")
@@ -127,14 +132,6 @@ Slow.Diff <- DowEMA50 - DowEMA200
 addTA(Fast.Diff, col='blue', type='h',legend="fast")
 addTA(Slow.Diff, col='red', type='h',legend="slow")
 
-
-#----------
-if no position: red > 0 and blue-1 < 0 and blue > 0 go long
-if long: blue < 0 exit long
-
-if no position: red < 0 and blue-1 > 0 and blue < 0 go short
-if short: blue > 0 exit short
-#-----------------
 
 
 
