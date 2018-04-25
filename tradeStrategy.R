@@ -16,21 +16,21 @@ addTA(SlowDifference, col='red', type='h',legend="Slow moving average")
 
 library(binhf)
 
-Long_Trades <- ifelse(
+buySignal <- ifelse(
   SlowDifference  > 0 &
     fastDifference  > 0 &
     shift(v=as.numeric(fastDifference), places=1, dir="right") < 0, AAPL$AAPL.Close, NA)
 
 # look for long exits (same thing but inverse signts)
-Short_Trades <- ifelse(
+sellSignal <- ifelse(
   SlowDifference  < 0 &
     fastDifference  < 0 &
     shift(v=as.numeric(fastDifference), places=1, dir="right") > 0, AAPL$AAPL.Close, NA)
 
 plot(AAPL$AAPL.Close,type='l',grid.col = 'white',grid2 = 'white')
 grid
-points(Long_Trades, col='blue', cex=1.5, pch=18)
-points(Short_Trades, col='red', cex=1.5, pch=18)
+points(buySignal, col='blue', cex=1.5, pch=18)
+points(sellSignal, col='red', cex=1.5, pch=18)
 #fixedsdfsdfasdf
 
 
