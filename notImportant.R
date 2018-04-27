@@ -4,7 +4,24 @@
 # project first we need to intall quantmode package. 
 getwd()
 #setwd("C:\Users\ali\OneDrive - 365.um.edu.my\WQD7001")
-setwd("/Users/Ali/Documents/GitHub/GPPDS")
+#setwd("/Users/Ali/Documents/GitHub/GPPDS")
+
+#LIST OF FINANCIAL DATASETS
+#Amazon.com, Inc. (AMZN), S&P 500 (^GSPC), Dow Jones Industrial Average (^DJI), ASDAQ Composite (^IXIC),
+#Russell 2000 (^RUT), EUR/USD (EURUSD=X), FTSE 100 (^FTSE), USD/JPY (JPY=X), Nikkei 225 (^N225), Domino's Pizza, Inc. (DPZ),
+# Domino's Pizza, Inc. (DPZ), Facebook, Inc. (FB), Facebook, Inc. (FB), Micron Technology, Inc. (MU), Intel Corporation (INTC), 
+# Apple Inc. (AAPL), American Airlines Group Inc. (AAL), AT&T Inc. (T), Sprint Corporation (S), AT&T Inc. (T),
+# CAC 40 (^FCHI), KOSPI Composite Index (^KS11), Microsoft Corporation (MSFT),Baidu, Inc. (BIDU)
+#-----------------------------------------------------------------------------------------------
+
+#LIST OF TECHNICAL INDICATORS
+
+#https://www.quantmod.com/examples/charting/
+
+#--------------------------------------------------
+
+
+
 
 
 install.packages('quantmod')
@@ -119,34 +136,35 @@ getSymbols(c('IBEX', 'SPY'), src='yahoo')
 chartSeries(IBEX$IBEX.Close, theme="white", TA="addEMA(50, col='black');addEMA(200, col='blue')",subset = '2017')
 chartSeries(SPY, theme="white", TA="addEMA(50, col='black');addEMA(200, col='blue')",subset = '2017')
 
-SPY.EMA.50<- EMA(SPY$SPY.Close, n=50, ) 
-SPY.EMA.200<- EMA(SPY$SPY.Close, n=200, )  
+SPY.EMA.50<- EMA(SPY$SPY.Close, n=50 ) 
+SPY.EMA.200<- EMA(SPY$SPY.Close, n=200 )  
 addTA(SPY.EMA.50 - SPY.EMA.200,col='blue', type='h',legend="50-200 MA")
 
 
 library(TTR)
 chartSeries(IBEX, theme="white", TA="addEMA(50, col='black');addEMA(200, col='blue')",subset = '2017')
 
-IBEX.EMA.50 <- EMA(IBEX$IBEX.Close, n=50, ) 
-IBEX.EMA.200 <- EMA(IBEX$IBEX.Close, n=200, ) 
+IBEX.EMA.50 <- EMA(IBEX$IBEX.Close, n=50) 
+IBEX.EMA.200 <- EMA(IBEX$IBEX.Close, n=200) 
 addTA(IBEX.EMA.50 - IBEX.EMA.200, col='blue', type='h',legend="50-200 MA")
 
 chartSeries(IBEX, theme="white", TA="addEMA(50, col='black');addEMA(200, col='blue')",subset = '2017')
 
 
-IBEX.EMA.10 <- EMA(IBEX$IBEX.Close, n=10, ) 
-IBEX.EMA.50 <- EMA(IBEX$IBEX.Close, n=50, ) 
-IBEX.EMA.200 <- EMA(IBEX$IBEX.Close, n=200, ) 
+IBEX.EMA.10 <- EMA(IBEX$IBEX.Close, n=10) 
+IBEX.EMA.50 <- EMA(IBEX$IBEX.Close, n=50) 
+IBEX.EMA.200 <- EMA(IBEX$IBEX.Close, n=200) 
 Fast.Diff <- IBEX.EMA.10 - IBEX.EMA.50
 Slow.Diff <- IBEX.EMA.50 - IBEX.EMA.200
 addTA(Fast.Diff, col='blue', type='h',legend="10-50 MA")
 addTA(Slow.Diff, col='red', type='h',legend="50-200 MA")
 
-chartSeries(SPY, theme="white", TA="addEMA(50, col='black');addEMA(200, col='blue')",subset = '2017')
+getSymbols('SPY')
+chartSeries(SPY, theme="white", TA="addEMA(50, col='black');addEMA(200, col='blue')")
 
-SPY.EMA.10 <- EMA(SPY$SPY.Close, n=10, ) 
-SPY.EMA.50 <- EMA(SPY$SPY.Close, n=50, ) 
-SPY.EMA.200 <- EMA(SPY$SPY.Close, n=200, ) 
+SPY.EMA.10 <- EMA(SPY$SPY.Close, n=10) 
+SPY.EMA.50 <- EMA(SPY$SPY.Close, n=50) 
+SPY.EMA.200 <- EMA(SPY$SPY.Close, n=200 ) 
 Fast.Diff <- SPY.EMA.10 - SPY.EMA.50
 Slow.Diff <- SPY.EMA.50 - SPY.EMA.200
 addTA(Fast.Diff, col='blue', type='h',legend="10-50 MA")
@@ -158,9 +176,10 @@ addTA(Fast.Diff, col='blue', type='h',legend="10-50 MA")
 #----------------------------------#----------------------------------#----------------------------------
 #----------------------------------#----------------------------------#----------------------------------
 #coding for trading 
-EMA.Fast <- EMA(SPY$SPY.Close, n=10, ) 
-EMA.Medium <- EMA(SPY$SPY.Close, n=50, ) 
-EMA.Slow <- EMA(SPY$SPY.Close, n=200, ) 
+getSymbols('SPY')
+EMA.Fast <- EMA(SPY$SPY.Close, n=10) 
+EMA.Medium <- EMA(SPY$SPY.Close, n=50 ) 
+EMA.Slow <- EMA(SPY$SPY.Close, n=200) 
 Fast.Diff <- EMA.Fast - EMA.Medium
 Slow.Diff <- EMA.Medium - EMA.Slow
 
@@ -169,16 +188,20 @@ Long_Trades <- ifelse(
   Slow.Diff  > 0 &
     Fast.Diff  > 0 &
     shift(v=as.numeric(Fast.Diff), places=1, dir="right") < 0, SPY$SPY.Close, NA)
-    # bro kwangwei this is the notifiction signal 
-    print('buy')
+
 # trading strategy for selling 
 Short_Trades <- ifelse(
   Slow.Diff  < 0 &
     Fast.Diff  < 0 &
-  
+    
     shift(v=as.numeric(Fast.Diff), places=1, dir="right") > 0, SPY$SPY.Close, NA)
-# bro kwangwei this is the notifiction signal  for selling the stock 
-    print('sell')
+    
 
 
 
+
+    
+    
+    
+    
+    
