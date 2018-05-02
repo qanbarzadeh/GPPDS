@@ -4,7 +4,7 @@ library(TTR)
 library(binhf)
 
 # A predefined list of stocks
-stocks <- c('Apple' = 'AAPL', 'Google' = 'GOOG', 'Wallmart' = 'WMT','Amazon'='AMZN',
+stocks <- c('Apple' = 'AAPL', 'Alphabet' = 'GOOG', 'Walmart' = 'WMT','Amazon'='AMZN',
             'S&P 500' = '^GSPC','NASDAQ'='^IXIC')
 features <- c('Bollinger Bands'='addBBands()', 'Volume'='addVo()',
              'Commodity Channel Index'='addCCI()', 'Simple Moving Average (red)'='addSMA()',
@@ -24,7 +24,7 @@ ui <- fluidPage(
     sliderInput(inputId='time', label='Time Period',
                 min = 1, max = 365, value = 30),
     # Radio button for theme selection
-    radioButtons(inputId = 'theme', label='Theme', choices=c('White'=1, 'Black'=2),
+    radioButtons(inputId = 'theme', label='Theme', choices=c('Light'=1, 'Dark'=2),
                  selected=1),
     # Checkbox for user to select features to show in chart
     checkboxGroupInput(inputId='features', label='Features', choices=features,
@@ -34,9 +34,9 @@ ui <- fluidPage(
                  selected=1)
   ),
   mainPanel(
-    plotOutput('price_plot'),
+    plotOutput(outputId = 'price_plot'),
     br(),
-    plotOutput('predict_plot'),
+    plotOutput(outputId = 'predict_plot'),
     br()
     #dataTableOutput('stock_table')
   )
@@ -98,11 +98,12 @@ server <- function(input, output, session) {
         fastDifference  < 0 &
         shift(v=as.numeric(fastDifference), places=1, dir="right") > 0, stock[, 4, drop=FALSE], NA)
     
-    plot(stock[, 4, drop=FALSE],type='l',grid.col='white',grid2='white',
-         subset='2015::2018', main='Buying and Selling oppotunity')
-    
-    points(buySignal, col='blue', cex=3, pch=17)
+    plot(stock[, 4, drop=FALSE], type='l', subset='2016::2018',
+         main='Buying and Selling opportunity')
+    points(buySignal, col='green', cex=3, pch=17)
     points(sellSignal, col='red',bg='red', cex=3, pch=25)
+    #legend(x='center',legend=c('buy position', 'sell position'), col=c('green', 'red'),
+    #       pch=c(17,25))
   })
   
 }
