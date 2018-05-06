@@ -34,18 +34,32 @@ ui <- fluidPage(
                  selected=1)
   ),
   mainPanel(
-    plotOutput(outputId = 'price_plot'),
-    br(),
-    plotOutput(outputId = 'predict_plot'),
-    br()
+    tabsetPanel(
+      tabPanel('Trade Strategy', 
+               plotOutput(outputId = 'price_plot'),
+               br(),
+               plotOutput(outputId = 'buysell_plot')
+               ),
+      tabPanel('Summary', 
+               dataTableOutput(outputId = 'stock_summary')
+               ),
+      tabPanel('User Guide', htmlOutput('guide'))
+    )
+    #plotOutput(outputId = 'price_plot'),
+    #br(),
+    #plotOutput(outputId = 'predict_plot'),
+    #br()
     #dataTableOutput('stock_table')
   )
 )
 
 # The main function that handle input from UI and output graphs
 server <- function(input, output, session) {
-  output$stock_table <- renderDataTable({
+  # Output the summary of the stock data
+  output$stock_summary <- renderDataTable({
     stock <- getSymbols(input$stock, src='yahoo', auto.assign = FALSE)
+    temp <- last(stock, paste(input$time, 'days'))
+    summary(temp)
   })
   
   # Output the chart
@@ -68,7 +82,7 @@ server <- function(input, output, session) {
     
     # Plotting the main chart
     chartSeries(stock,name='Stock Price Movement', theme=themeCol, TA=paste(input$features, collapse = ';'),
-                subset = paste('last', input$time, "days"), show.grid=TRUE)
+                subset = paste('last', input$time, 'days'), show.grid=TRUE)
     # Plot the average based on user input
     if (input$average==1) {
       addTA(fastDifference, on=NA, col='blue', legend="Fast moving average")  
@@ -77,7 +91,7 @@ server <- function(input, output, session) {
     }
   })
   
-  output$predict_plot <- renderPlot({
+  output$buysell_plot <- renderPlot({
     stock <- getSymbols(input$stock, src='yahoo', auto.assign = FALSE)
     
     # Calculating the EMA for the moving averages
@@ -105,6 +119,11 @@ server <- function(input, output, session) {
     #legend(x='center',legend=c('buy position', 'sell position'), col=c('green', 'red'),
     #       pch=c(17,25))
   })
+  
+  getPage <- function(input, output) {
+    return(includeHTML('guide.html'))
+  }
+  output$guide <- renderUI({getPage()})
   
 }
 
