@@ -45,11 +45,6 @@ ui <- fluidPage(
                ),
       tabPanel('User Guide', htmlOutput('guide'))
     )
-    #plotOutput(outputId = 'price_plot'),
-    #br(),
-    #plotOutput(outputId = 'predict_plot'),
-    #br()
-    #dataTableOutput('stock_table')
   )
 )
 
