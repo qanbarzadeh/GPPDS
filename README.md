@@ -4,9 +4,7 @@
 Group members
 
 1. Ng Kang Wei             WQD170068
-
 2. Alireza Ghanbarzardeh   WQD170061
-
 3. Ng Koi Yee              WQD170081
 
 ## Introduction
