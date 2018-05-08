@@ -4,16 +4,23 @@ library(TTR)
 library(binhf)
 
 # A predefined list of stocks
-stocks <- c('Apple' = 'AAPL', 'Alphabet' = 'GOOG', 'Walmart' = 'WMT','Amazon'='AMZN',
-            'S&P 500' = '^GSPC','NASDAQ'='^IXIC')
-features <- c('Bollinger Bands'='addBBands()', 'Volume'='addVo()',
+stocks <- c('Alphabet'='GOOG','Amazon.com, Inc.'='AMZN','American Airline Group Inc.'='AAL','Apple'='AAPL',
+            'AT&T Inc.'='T','Baidu, Inc.'='BIDU','Domino Pizza, Inc.'='DPZ',
+            'Dow Jones Industrial Average'='^DJI','Facebook, Inc.'='FB',
+            'Intel Corporation'='INTC','Micron Technology, Inc.'='MU',
+            'Microsoft Corporation'='MSFT','NASDAQ Composite'='^IXIC',
+            'S&P 500' = '^GSPC','Walmart Inc.' = 'WMT')
+indicators <- c('Bollinger Bands'='addBBands()', 'Volume'='addVo()',
              'Commodity Channel Index'='addCCI()', 'Simple Moving Average (red)'='addSMA()',
-             'Exponential Moving Average (blue)'='addEMA()', 'Rate of Change' = 'addROC()')
+             'Exponential Moving Average (blue)'='addEMA()','Weighted Moving Average (green)'='addWMA()',
+             'Rate of Change' = 'addROC()','Average True Range'='addATR()',
+             'Relative Strength Indicator'='addRSI()','Stochastic Momentum Index'='addSMI()',
+             'Detrended Price Oscillator'='addDPO()','Price Envelope (dashed blue)'='addEnvelope()')
 averages <- c('Fast moving average'=1, 'Slow moving average'=2)
 
 # The UI part
 ui <- fluidPage(
-  headerPanel('Financial Data Analysis'),
+  headerPanel('QuantX'),
   sidebarPanel(
     helpText('Select the stock and the time period to visualize the stock price changes'),
     # Drop down for user to select a stock
@@ -26,8 +33,8 @@ ui <- fluidPage(
     # Radio button for theme selection
     radioButtons(inputId = 'theme', label='Theme', choices=c('Light'=1, 'Dark'=2),
                  selected=1),
-    # Checkbox for user to select features to show in chart
-    checkboxGroupInput(inputId='features', label='Features', choices=features,
+    # Checkbox for user to select indicators to show in chart
+    checkboxGroupInput(inputId='indicators', label='Indicators', choices=indicators,
                        selected='addBBands()'),
     # Radio buttons for user to select a type of average
     radioButtons(inputId='average', label='Type of average', choices=averages,
@@ -76,7 +83,7 @@ server <- function(input, output, session) {
     slowDifference <- ema.50 - ema.200
     
     # Plotting the main chart
-    chartSeries(stock,name='Stock Price Movement', theme=themeCol, TA=paste(input$features, collapse = ';'),
+    chartSeries(stock,name='Stock Price Movement', theme=themeCol, TA=paste(input$indicators, collapse = ';'),
                 subset = paste('last', input$time, 'days'), show.grid=TRUE)
     # Plot the average based on user input
     if (input$average==1) {
