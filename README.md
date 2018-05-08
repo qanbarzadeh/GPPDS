@@ -15,35 +15,20 @@ This financial analysis app is used to visualize the stock price movement over a
 Content
 
 * [User interface](#user-interface)
-
 * [Bollinger bands](#bollinger-bands)
-
 * [Volume](#volume)
-
 * [Commodity channel index](#commodity-channel-index)
-
 * [Simple moving average](#simple-moving-average)
-
 * [Exponential moving average](#exponential-moving-average)
-
 * [Weighted moving average](#weighted-moving-average)
-
 * [Rate of change](#rate-of-change)
-
 * [Average true range](#average-true-range)
-
 * [Relative strength indicator](#relative-strength-indicator)
-
 * [Stochastic momentum index](#stochastic-momentum-index)
-
 * [Detrended price oscillator](#detrended-price-oscillator)
-
 * [Price envelope](#price-envelope)
-
 * [Fast moving average](#fast-moving-average)
-
 * [Slow moving average](#slow-moving-average)
-
 
 ## User Interface
 ### Menu
@@ -77,7 +62,7 @@ Bollinger bands are developed by John Bollinger. Bollinger bands are volatility 
 Bollinger bands consist of a middle band with two outer band. The middle band is a simple moving average that is usually set at 20 periods. Bollinger bands are used to identify M-Tops and W-Bottoms or to determine the strength of the trend.
 
 ## Volume
-Volume is simply the number of shares or contracts that trade over a given period - usually a day. Voulme is used by technical analyse to confirm trends and chart patterns. The strength of any given price movement is measured primarily by the volume. In fact, a 50% rise in stock price may not be all that relevant at all if it occurs on very little volume.
+Volume is simply the number of shares or contracts that trade over a given period - usually a day. Volume is used by technical analyst to confirm trends and chart patterns. The strength of any given price movement is measured primarily by the volume. In fact, a 50% rise in stock price may not be all that relevant at all if it occurs on very little volume.
 
 ## Commodity Channel Index
 Commodity channel index (CCI) is developed by Donald Lambert. It is a versatile indicator that can be used to identify a new trend or warn of extreme conditions. In general, CCI measures the current price level relative to an average price level over a given period of time. CCI is relatively high when prices are far above their average. CCI is relatively low when prices are far below their average. In this manner, CCI can be used to identify overbought and oversold levels.
@@ -97,12 +82,12 @@ Exponential moving average (EMA) indicator was developed to counter the lagging 
 EMAs are commonly used in conjunction with other indicators to confirm significant market moves and to gauge their validity. When the market is in a strong and sustained uptrend, the EMA indicator line will also show an uptrend and vice-versa for a downtrend.
 
 ## Weighted Moving Average
-Weighted Moving Average (WMA) is a weighted average of the last n price, where the weighting decreases with each previous price. This is a similar concept with EMA but the calculation for WMA is different. WMA can have different weights assigned based on number periods used in the calculation.
+Weighted Moving Average (WMA) is a weighted average of the last 'n' price, where the weighting decreases with each previous price. This is a similar concept with EMA but the calculation for WMA is different. WMA can have different weights assigned based on number periods used in the calculation.
 
 If there are four prices you want a weighted moving average of, then the most recent weighting could be 4/10, the period before could have a weight of 3/10, the period prior to that could have a weighting of 2/10, and so on. 10 is a randomly picked number, and a weight of 4/10 means the most recent price will amount for 40% of the value of the WMA. The price 3 periods ago only accounts of 10% of the WMA value.
 
 ## Rate of Change
-The rate of change (ROC) indicator which also referred to as simple Momentum, is a pure momentum oscillator that measures the percent change in price from one period to the next. ROC compares the current price with the price 'n' periods ago. The plot forms an oscillator that fluctuates above and below the zero line as the ROC moves from positive to negative.
+The rate of change (ROC) indicator which also referred to as simple momentum, is a pure momentum oscillator that measures the percent change in price from one period to the next. ROC compares the current price with the price 'n' periods ago. The plot forms an oscillator that fluctuates above and below the zero line as the ROC moves from positive to negative.
 
 In general, prices are rising as long as the ROC remains positive. Conversely, prices are falling when the ROC is negative. ROC expands into positive territory as an advance accelerates. ROC dives deeper into negative territory as a decline accelerates. ROC produces identifiable extremes that signal overbought and oversold conditions.
 
