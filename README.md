@@ -8,7 +8,7 @@ Group members
 3. Ng Koi Yee              WQD170081
 
 ## Introduction
-This financial analysis app is used to visualize the stock price movement over a period of time and let user select some of the indicators to be added on the chart. This document would explains the user interface of this app and the indicators available for the user to select in the app.
+QuantX is a financial data analysis app. It is used to visualize the stock price movement over a period of time and let user selects some of the indicators to be added on the chart. This document would explains the user interface of this app and the indicators available for the user to select in the app.
 
 Content
 
