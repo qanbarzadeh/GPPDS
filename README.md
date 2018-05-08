@@ -29,13 +29,13 @@ Content
 
 ## User Interface
 ### Menu
-In the drop down menu, user can select one of the stock to be analyzed.
+In the drop down menu, user can select one of the stock to be displayed on the chart.
 
 The slider allows the user to choose to visualize how many days of the stock price movement.
 
 The theme selection allows the user to change the theme of the chart to light or dark, according to the user preference. Some indicators can be seen better on a dark theme.
 
-The checkboxes are the indicators selection. User can select what indicators to be added onto the chart. Elaboration on each of the indicators are in the following sections.
+The checkboxes are the indicators selection. User can add the indicators onto the chart by checking the boxes. Elaboration on each of the indicators are in the following sections.
 
 The radio button lets user to switch between 2 types of averages, namely fast moving average and slow moving average.
 
