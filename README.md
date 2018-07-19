@@ -1,8 +1,3 @@
----
-output:
-  html_document: default
-  pdf_document: default
----
 # WQD7001 Principles of Data Science
 ## QuantX
 
