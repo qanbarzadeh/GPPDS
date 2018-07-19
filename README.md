@@ -1,3 +1,8 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
 # WQD7001 Principles of Data Science
 ## QuantX
 
@@ -11,21 +16,21 @@ Group members
 QuantX is a financial data analysis app. It is used to visualize the stock price movement over a period of time. User would be able to select some indicators to be added on to the chart to show some additional information. The following sections would discuss each of the components in the user interface and each of the indicators in the app.
 
 Content
-* [User interface](#user-interface)
-* [Bollinger bands](#bollinger-bands)
-* [Volume](#volume)
-* [Commodity channel index](#commodity-channel-index)
-* [Simple moving average](#simple-moving-average)
-* [Exponential moving average](#exponential-moving-average)
-* [Weighted moving average](#weighted-moving-average)
-* [Rate of change](#rate-of-change)
-* [Average true range](#average-true-range)
-* [Relative strength indicator](#relative-strength-indicator)
-* [Stochastic momentum index](#stochastic-momentum-index)
-* [Detrended price oscillator](#detrended-price-oscillator)
-* [Price envelope](#price-envelope)
-* [Fast moving average](#fast-moving-average)
-* [Slow moving average](#slow-moving-average)
+- [User interface](#user-interface)
+- [Bollinger bands](#bollinger-bands)
+- [Volume](#volume)
+- [Commodity channel index](#commodity-channel-index)
+- [Simple moving average](#simple-moving-average)
+- [Exponential moving average](#exponential-moving-average)
+- [Weighted moving average](#weighted-moving-average)
+- [Rate of change](#rate-of-change)
+- [Average true range](#average-true-range)
+- [Relative strength indicator](#relative-strength-indicator)
+- [Stochastic momentum index](#stochastic-momentum-index)
+- [Detrended price oscillator](#detrended-price-oscillator)
+- [Price envelope](#price-envelope)
+- [Fast moving average](#fast-moving-average)
+- [Slow moving average](#slow-moving-average)
 
 ## User Interface
 ### Menu
